@@ -17,10 +17,24 @@ document.addEventListener("DOMContentLoaded", () => {
 	const enlargedImage = overlay.querySelector(".lightbox-image");
 	const closeButton = overlay.querySelector(".lightbox-close");
 	const downloadButton = overlay.querySelector(".lightbox-download");
+	let offsetX = 0;
+	let offsetY = 0;
+	let dragStartX = 0;
+	let dragStartY = 0;
+	let isDragging = false;
+	let movedDuringDrag = false;
+
+	const resetZoomPosition = () => {
+		offsetX = 0;
+		offsetY = 0;
+		enlargedImage.style.setProperty("--zoom-x", "0px");
+		enlargedImage.style.setProperty("--zoom-y", "0px");
+	};
 
 	const close = () => {
 		overlay.classList.remove("is-visible");
 		enlargedImage.classList.remove("is-zoomed");
+		resetZoomPosition();
 		document.body.classList.remove("lightbox-open");
 	};
 
@@ -28,6 +42,7 @@ document.addEventListener("DOMContentLoaded", () => {
 		enlargedImage.src = image.src;
 		enlargedImage.alt = image.alt;
 		downloadButton.href = image.src;
+		resetZoomPosition();
 		overlay.classList.add("is-visible");
 		document.body.classList.add("lightbox-open");
 		closeButton.focus();
@@ -47,7 +62,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
 	closeButton.addEventListener("click", close);
 	enlargedImage.addEventListener("click", () => {
+		if (movedDuringDrag) {
+			movedDuringDrag = false;
+			return;
+		}
 		enlargedImage.classList.toggle("is-zoomed");
+		if (!enlargedImage.classList.contains("is-zoomed")) resetZoomPosition();
+	});
+	enlargedImage.addEventListener("pointerdown", (event) => {
+		if (!enlargedImage.classList.contains("is-zoomed")) return;
+		isDragging = true;
+		movedDuringDrag = false;
+		dragStartX = event.clientX - offsetX;
+		dragStartY = event.clientY - offsetY;
+		enlargedImage.setPointerCapture(event.pointerId);
+		enlargedImage.classList.add("is-dragging");
+	});
+	enlargedImage.addEventListener("pointermove", (event) => {
+		if (!isDragging) return;
+		offsetX = event.clientX - dragStartX;
+		offsetY = event.clientY - dragStartY;
+		if (Math.abs(offsetX) > 3 || Math.abs(offsetY) > 3) movedDuringDrag = true;
+		enlargedImage.style.setProperty("--zoom-x", `${offsetX}px`);
+		enlargedImage.style.setProperty("--zoom-y", `${offsetY}px`);
+	});
+	enlargedImage.addEventListener("pointerup", (event) => {
+		if (!isDragging) return;
+		isDragging = false;
+		enlargedImage.releasePointerCapture(event.pointerId);
+		enlargedImage.classList.remove("is-dragging");
+	});
+	enlargedImage.addEventListener("pointercancel", () => {
+		isDragging = false;
+		enlargedImage.classList.remove("is-dragging");
 	});
 	overlay.addEventListener("click", (event) => {
 		if (event.target === overlay) close();

@@ -17,8 +17,9 @@
 		figure:hover img { transform: scale(1.05); }
 		.lightbox { display: none; position: fixed; inset: 0; z-index: 10; align-items: center; justify-content: center; padding: 2rem; background: rgba(0, 0, 0, .85); }
 		.lightbox.is-visible { display: flex; }
-		.lightbox-image { max-width: 95vw; max-height: 90vh; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; }
-		.lightbox-image.is-zoomed { transform: scale(1.7); cursor: zoom-out; }
+		.lightbox-image { max-width: 95vw; max-height: 90vh; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; touch-action: none; }
+		.lightbox-image.is-zoomed { transform: translate(var(--zoom-x), var(--zoom-y)) scale(1.7); cursor: grab; }
+		.lightbox-image.is-dragging { cursor: grabbing; transition: none; }
 		.lightbox-close { position: absolute; top: 1rem; right: 1.5rem; border: 0; background: transparent; color: #fff; font-size: 2.5rem; cursor: pointer; }
 		.lightbox-download { position: absolute; bottom: 1.5rem; left: 50%; transform: translateX(-50%); padding: .65rem 1rem; border-radius: 6px; background: #fff; color: #222; text-decoration: none; font-weight: 600; }
 		.lightbox-open { overflow: hidden; }
