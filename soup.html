@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Soup Gallery</title>
+	<style>
+		* { box-sizing: border-box; }
+		body { margin: 0; font-family: Arial, sans-serif; color: #222; background: #f6f3ef; }
+		header { padding: 3rem 1.5rem 2rem; text-align: center; background: #fff; }
+		h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 4rem); }
+		header p { margin: 0; color: #666; }
+		main { max-width: 1200px; margin: auto; padding: 2rem 1.5rem; }
+		.gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; }
+		figure { margin: 0; overflow: hidden; border-radius: 12px; background: #ddd; }
+		figure img { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; transition: transform .25s ease; }
+		figure:hover img { transform: scale(1.05); }
+		figcaption { padding: .75rem; background: #fff; font-weight: 600; }
+	</style>
+</head>
+<body>
+	<header><h1>Soup Gallery</h1><p>A collection of memorable moments</p></header>
+	<main><section class="gallery" aria-label="Soup photo collection">
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.00.jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.00</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.01%20(1).jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.01 (1)</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.01%20(2).jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.01 (2)</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.01%20(3).jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.01 (3)</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.01.jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.01</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.02%20(1).jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.02 (1)</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.02%20(2).jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.02 (2)</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.02%20(3).jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.02 (3)</figcaption></figure>
+		<figure><img src="soup/WhatsApp%20Image%202026-11-13%20at%2023.01.02.jpeg" alt="Soup photo"><figcaption>WhatsApp Image 2026-11-13 at 23.01.02</figcaption></figure>
+	</section></main>
+</body>
+</html>
