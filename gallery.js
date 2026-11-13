@@ -71,6 +71,7 @@ document.addEventListener("DOMContentLoaded", () => {
 	});
 	enlargedImage.addEventListener("pointerdown", (event) => {
 		if (!enlargedImage.classList.contains("is-zoomed")) return;
+		if (event.pointerType === "mouse" && event.button !== 0 && event.button !== 2) return;
 		isDragging = true;
 		movedDuringDrag = false;
 		dragStartX = event.clientX - offsetX;
@@ -95,6 +96,17 @@ document.addEventListener("DOMContentLoaded", () => {
 	enlargedImage.addEventListener("pointercancel", () => {
 		isDragging = false;
 		enlargedImage.classList.remove("is-dragging");
+	});
+	enlargedImage.addEventListener("contextmenu", (event) => {
+		if (enlargedImage.classList.contains("is-zoomed")) event.preventDefault();
+	});
+	enlargedImage.addEventListener("wheel", (event) => {
+		if (!enlargedImage.classList.contains("is-zoomed")) return;
+		event.preventDefault();
+		offsetX -= event.deltaX;
+		offsetY -= event.deltaY;
+		enlargedImage.style.setProperty("--zoom-x", `${offsetX}px`);
+		enlargedImage.style.setProperty("--zoom-y", `${offsetY}px`);
 	});
 	overlay.addEventListener("click", (event) => {
 		if (event.target === overlay) close();

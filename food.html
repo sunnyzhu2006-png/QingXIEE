@@ -46,7 +46,7 @@
 			background: rgba(0, 0, 0, .85);
 		}
 		.lightbox.is-visible { display: flex; }
-		.lightbox-image { max-width: 95vw; max-height: 90vh; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; touch-action: none; }
+		.lightbox-image { max-width: 95vw; max-height: 90vh; object-fit: contain; cursor: zoom-in; transition: transform .25s ease; touch-action: none; user-select: none; }
 		.lightbox-image.is-zoomed { transform: translate(var(--zoom-x), var(--zoom-y)) scale(1.7); cursor: grab; }
 		.lightbox-image.is-dragging { cursor: grabbing; transition: none; }
 		.lightbox-close {
