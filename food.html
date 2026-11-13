@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Photo Gallery</title>
+	<style>
+		* { box-sizing: border-box; }
+		body {
+			margin: 0;
+			font-family: Arial, sans-serif;
+			color: #222;
+			background: #f6f3ef;
+		}
+		header {
+			padding: 3rem 1.5rem 2rem;
+			text-align: center;
+			background: #fff;
+		}
+		h1 { margin: 0 0 .5rem; font-size: clamp(2rem, 5vw, 4rem); }
+		header p { margin: 0; color: #666; }
+		main { max-width: 1200px; margin: auto; padding: 2rem 1.5rem; }
+		.gallery {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+			gap: 1rem;
+		}
+		figure { margin: 0; overflow: hidden; border-radius: 12px; background: #ddd; }
+		figure img {
+			display: block;
+			width: 100%;
+			aspect-ratio: 4 / 3;
+			object-fit: cover;
+			transition: transform .25s ease;
+		}
+		figure:hover img { transform: scale(1.05); }
+		figcaption { padding: .75rem; background: #fff; font-weight: 600; }
+	</style>
+</head>
+<body>
+	<header>
+		<h1>Photo Gallery</h1>
+		<p>A collection of food</p>
+	</header>
+
+	<main>
+		<section class="gallery" aria-label="Photo collection">
+
+		</section>
+	</main>
+</body>
+</html>
